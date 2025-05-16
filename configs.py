@@ -1,5 +1,5 @@
 TOKEN = "mytoken"
-ID = "8090511764"
+ID = "myid"
 ALPHABET = " 0123456789-йцукенгшщзхъфывапролджэячсмитьбюёqwertyuiopasdfghjklzxcvbnm?%.,()!:;"
 
 INTENTS_DICTIONARY = {'hello': {'examples': ['Здравствуй', 'Здравствуйте', 'Привет', 'Приветик', 'Хай'],
