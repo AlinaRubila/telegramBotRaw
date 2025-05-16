@@ -1,4 +1,4 @@
-TOKEN = "8090511764:AAGeOY3qZfnrIOSHdb_EeE8UWz9a7vHXZMc"
+TOKEN = "mytoken"
 ID = "8090511764"
 ALPHABET = " 0123456789-йцукенгшщзхъфывапролджэячсмитьбюёqwertyuiopasdfghjklzxcvbnm?%.,()!:;"
 
