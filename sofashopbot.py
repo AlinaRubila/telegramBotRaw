@@ -1,6 +1,6 @@
 import functions, configs
 from telegram import Update, ReplyKeyboardMarkup,  ReplyKeyboardRemove
-from telegram.ext import Application, Updater, CommandHandler, MessageHandler, ContextTypes, filters, \
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, \
     ConversationHandler
 
 token = configs.TOKEN
