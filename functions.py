@@ -5,7 +5,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 
-
 def intent_classifier():
     X_text = ["Дратути", "Покедова", "Чё как", "Представься", "Салют", "Бывай", "Как дела", "Как твоё имя", "Да"]
     y = ['hello', 'goodbye', 'whatsup', 'name', 'hello', 'goodbye', 'whatsup', 'name', 'yes']
