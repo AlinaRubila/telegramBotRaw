@@ -17,6 +17,10 @@ async def call_command(update, context, answer) -> None:
         await catalog(update, context)
     elif answer == "#faq":
         await faq(update, context)
+    elif answer == "#help":
+        await help(update, context)
+    elif answer == "#info":
+        await info(update, context)
 
 async def texting(update, context) -> None:
     chat_id = update.message.chat_id
