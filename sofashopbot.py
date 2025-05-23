@@ -30,6 +30,17 @@ async def texting(update, context) -> None:
     elif answer[0] != "#": await update.message.reply_text(answer)
     else: await call_command(update, context, answer)
 
+async def voice(update, context) -> None:
+    chat_id = update.message.chat_id
+    file_id = update.message.voice.file_id
+    file_info = await context.bot.get_file(file_id)
+    await file_info.download_to_drive(custom_path="voices/voice.wav")
+    recognized = functions.speech_recognition()
+    answer, image = functions.bot(recognized)
+    if image and image != "":
+        await context.bot.send_photo(chat_id=chat_id, photo=image, caption=answer)
+    else: await update.message.reply_text(answer)
+
 async def start(update, context) -> None:
     await update.message.reply_text("Здравствуйте! Давайте начнём наш диалог\nВведите /catalog, чтобы ознакомиться с нашими товарами\nВведите /order, если хотите сделать заказ\nВведите /faq, чтобы получить ответы на интересующие вопросы\nВведите /help, чтобы увидеть список доступных команд)")
 
@@ -163,7 +174,8 @@ def main():
                                                     CASH_OR_CARD: [MessageHandler(filters.Regex("^(Наличными|Картой)$"),cash_or_card)],
                                                     CONFIRM: [MessageHandler(filters.Regex("^(ДА|НЕТ)$"), confirmation)]},
                                                 fallbacks=[CommandHandler("cancel", cancel)]))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, texting))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, texting ))
+    application.add_handler(MessageHandler(filters.VOICE, voice))
 
     application.run_polling(allowed_updates=Update.ALL_TYPES)
 

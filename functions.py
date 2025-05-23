@@ -1,6 +1,7 @@
 import random, configs, nltk
-
-from nltk.parse.corenlp import transform
+import speech_recognition as sr
+import soundfile as sf
+import librosa
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
@@ -98,3 +99,22 @@ def orders_record(articule_number, fio, contact_info, address_data, payment):
     order = f"ФИО: {fio}\nАртикул: {articule_number}\nКонтакты: {contact_info}\nАдрес доставки: {address_data}\nОплата {payment.lower()}\n\n"
     f.writelines(order)
     f.close()
+
+def speech_recognition():
+    recognizer = sr.Recognizer()
+    voice_file = "voices/voice.wav"
+    waveform, samplerate = librosa.load(voice_file)
+    voice_file = "voices/voice1.wav"
+    sf.write(voice_file, waveform, samplerate)
+    with sr.AudioFile(voice_file) as source:
+        audio = recognizer.record(source)
+    text = ""
+    try:
+        text = recognizer.recognize_google(audio, language="ru-RU")
+    except sr.UnknownValueError:
+        text = "*"
+    except sr.RequestError as e:
+        print(f"Ошибка сервиса распознавания речи: {e}")
+        text = "*"
+    return text
+
