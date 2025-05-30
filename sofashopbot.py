@@ -39,7 +39,8 @@ async def voice(update, context) -> None:
     answer, image = functions.bot(recognized)
     if image and image != "":
         await context.bot.send_photo(chat_id=chat_id, photo=image, caption=answer)
-    else: await update.message.reply_text(answer)
+    elif answer[0] != "#": await update.message.reply_text(answer)
+    else: await call_command(update, context, answer)
 
 async def start(update, context) -> None:
     await update.message.reply_text("Здравствуйте! Давайте начнём наш диалог\nВведите /catalog, чтобы ознакомиться с нашими товарами\nВведите /order, если хотите сделать заказ\nВведите /faq, чтобы получить ответы на интересующие вопросы\nВведите /help, чтобы увидеть список доступных команд)")
