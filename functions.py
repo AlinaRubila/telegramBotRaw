@@ -67,7 +67,7 @@ def classify_intent(question, clf, vectorizer):
     for example in configs.INTENTS_DICTIONARY[intent]["examples"]:
         example = clear_str(example)
         distance = nltk.edit_distance(question, example)
-        if example and distance / len(example) <= 0.45:
+        if example and distance / len(example) <= 0.5:
             return intent
 
 def answer_by_intent(intent):
